@@ -1,1 +1,27 @@
+# - punto 1
+create tablespace big_tbs_julian datafile
+'datafile.dbf' size 1024M;
 
+# - punto 2
+create TABLESPACE quiz datafile
+'datafile1.dbf' size 200M,
+'datafile2.dbf' size 200M,
+'datafile3.dbf' size 200M
+AUTOEXTEND ON NEXT 600M MAXSIZE 1000M;
+
+# - punto 3
+CREATE PROFILE manager_profile LIMIT 
+SESSIONS_PER_USER         UNLIMITED
+CPU_PER_SESSION           UNLIMITED
+IDLE_TIME                  15
+FAILED_LOGIN_ATTEMPTS     UNLIMITED;
+
+# - punto 4
+create user DBAuser
+identified by dba123
+default tablespace quiz
+quota unlimited on quiz
+PROFILE manager_profile;
+
+# - punto 5
+grant connect to DBAuser;
